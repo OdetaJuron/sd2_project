@@ -1,0 +1,68 @@
+{
+    "Conference system": "Conference system",
+    "Toggle navigation": "Toggle navigation",
+
+    "Home": "Home",
+    "Client": "Client",
+    "Employee": "Employee",
+    "Admin": "Administrator",
+
+    "Logout": "Logout",
+    "Name Surname": "Name Surname",
+    
+    "The online system is for conference registration and managing conference data.":"The online system is for conference registration and managing conference data.",
+    "Student information:":"Student information:",
+    "Name : Odeta": "Name : Odeta",
+    "Surname : Juroniene": "Surname : Juroniene",
+    "Group: PIT-22-I-NT": "Group: PIT-22-I-NT",
+    
+    "Conferences": "Conferences",
+    "Registrations": "Registrations",
+    "Users": "Users",
+
+    "Date": "Date",
+    "Location": "Location",
+    "Actions": "Actions",
+    "View": "View",
+    "Register": "Register",
+    "Back": "Back",
+
+    "Name": "Name",
+    "Surname": "Surname",
+    "E-mail": "E-mail",
+
+    "Status": "Status",
+    "Registered clients": "Registered clients",
+
+    "No registered customers.": "No registered customers.",
+
+
+
+    "Dashboard": "Dashboard",
+ 
+
+
+    "Edit user": "Edit user",
+    "Save": "Save",
+
+    "Conference list": "Conference list",
+    "Create conference": "Create conference",
+    "Edit conference": "Edit conference",
+    "Conference details": "Conference details",
+
+    "Title": "Title",
+    "Description": "Description",
+    "Lecturers": "Lecturers",
+   
+
+    "Create": "Create",
+    "Update": "Update",
+    "Delete": "Delete",
+    "Show": "Show",
+
+    "Past": "Past",
+    "Upcoming": "Upcoming"
+
+
+
+}

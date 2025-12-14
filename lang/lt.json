@@ -1,0 +1,70 @@
+{
+    "Conference system": "Konferencijų sistema",
+    "Toggle navigation": "Perjungti navigaciją",
+
+    "Home": "Pradžia",
+    "Client": "Klientas",
+    "Employee": "Darbuotojas",
+ 
+
+    "Logout": "Atsijungti",
+    "Name Surname": "Vardas Pavardė",
+    
+
+    "The online system is for conference registration and managing conference data.":"Internetinė sistema skirta registracijai į konferencijas ir konferencijų duomenų valdymui.",
+    "Student information:":"Studento informacija:",
+    "Name : Odeta": "Vardas : Odeta",
+    "Surname : Juroniene": "Pavardė : Juronienė",
+    "Group: PIT-22-I-NT": "Grupė: PIT-22-I-NT",
+
+    
+    "Conferences": "Konferencijos",
+    "Registrations": "Registracijos",
+    "Users": "Vartotojai",
+
+    "Date": "Data",
+    "Location": "Vieta",
+    "Actions": "Veiksmai",
+    "View": "Peržiūrėti",
+    "Register": "Registruotis",
+    "Back": "Atgal",
+
+    "Name": "Vardas",
+    "Surname": "Pavardė",
+    "E-mail": "El. paštas",
+
+    "Status": "Būsena",
+    "Registered clients": "Užregistruoti klientai",
+
+    "No registered customers.": "Nėra registruotų klientų.",
+
+
+    "Dashboard": "Pagrindinis puslapis",
+    "Admin": "Administratorius",
+
+
+    "Edit user": "Vartotojo redagavimas",
+    "Save": "Išsaugoti",
+
+    "Conference list": "Konferencijų sąrašas",
+    "Create conference": "Sukurti konferenciją",
+    "Edit conference": "Konferencijos redagavimas",
+    "Conference details": "Konferencijos informacija",
+
+    "Title": "Pavadinimas",
+    "Description": "Aprašymas",
+    "Lecturers": "Lektoriai",
+
+
+    "Create": "Sukurti",
+    "Update": "Atnaujinti",
+    "Delete": "Ištrinti",
+    "Show": "Peržiūrėti",
+
+    "Past": "Įvykusi",
+    "Upcoming": "Artėjanti"
+
+
+
+
+}
