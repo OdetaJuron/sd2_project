@@ -6,6 +6,8 @@ use App\Http\Controllers\EmployeeConferenceController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminConferenceController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 
@@ -65,6 +67,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+/*----- Login  -----*/
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
+/*----- Register-----*/
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.perform');
+
