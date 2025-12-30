@@ -6,37 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
+use App\Models\Conference;
+
+
 class AdminConferenceController extends Controller
 {
-    private function getSimpleConferenceListForAdmin(): array
-    {
-        return [
-            1 => [
-                'id' => 1,
-            'title' => 'Kodėl verta Kūčių patiekalus valgyti dažniau nei kartą per metus?',
-            'date' => '2025-12-11',
-            'location' => 'Online',
-            'description' => 'Šventės dažnai tampa proga sulėtinti žingsnį, pažvelgti į savo kasdienius įpročius ir atrasti naujus, sveikatai palankesnius kelius į subalansuotą gyvenimą. Kūčių stalas, kupinas tradicinių, paprastų ir maistingų patiekalų, gali tapti įkvėpimo šaltiniu ne tik švenčių vakarui, bet ir kasdieniam maitinimuisi.
-Kviečiame jus į nuotolinį seminarą, kuriame kalbėsime apie tai, kaip Kūčių patiekalai gali prisidėti prie geresnės savijautos ir sveikatos – ypač sergant onkologine liga ar lydint sergančiuosius jų kelyje.'
-            ],
-            2 => [
-                 'id' => 2,
-            'title' => 'Farmacijos pažangos link: mokslas ir praktika',
-            'date' => '2025-11-21',
-            'location' => 'Kaunas',
-            'description' => 'Pristatomi plataus spektro specialistų -mokslininkų pranešimai apie inovacijas farmacijos praktikoje, inovatyvių produktų tyrimą ir pritaikymą.'
-            ],
-            3 => [
-                'id' => 3,
-            'title' => 'Slaugos mokslo ir praktikos aktualijos 2025',
-            'date' => '2025-12-12',
-            'location' => 'Online',
-            'description' => 'Konferencija skirta: visų specializacijų bendrosios praktikos slaugytojams, išplėstinės praktikos slaugytojams, akušeriams, kineziterapeutams, ergoterapeutams, socialiniams darbuotojams, medicinos psichologams, slaugytojo padėjėjams.
-
-Konferencija nemokama.'
-            ],
-        ];
-    }
 
     private function validateConference(Request $request): void
     {
@@ -48,62 +22,77 @@ Konferencija nemokama.'
         ]);
     }
 
-    public function index(): View
-    {
-        $conferences = $this->getSimpleConferenceListForAdmin();
+    public function index()
+{
+    $conferences = Conference::orderBy('start_date', 'asc')->get();
 
-        return view('admin.conferences.index', [
-            'conferences' => $conferences,
-        ]);
-    }
+    return view('admin.conferences.index', [
+        'conferences' => $conferences,
+    ]);
+}
+
 
     public function create(): View
     {
         return view('admin.conferences.create');
     }
 
-    public function store(Request $request): RedirectResponse
-    {
-        $this->validateConference($request);
+   public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'speakers' => 'nullable|string',
+        'start_date' => 'required|date',
+        'start_time' => 'required',
+        'address' => 'required|string|max:255',
+    ]);
 
-        return redirect()->route('admin.conferences.index');
-    }
+    Conference::create($validatedData);
 
-    public function show(int $id): View
-    {
-        $conferences = $this->getSimpleConferenceListForAdmin();
+    return redirect()->route('admin.conferences.index');
+}
 
-        if (!isset($conferences[$id])) {
-            abort(404);
-        }
+public function show(int $id): View
+{
+    $conference = Conference::findOrFail($id);
 
-        return view('admin.conferences.show', [
-            'conference' => $conferences[$id],
-        ]);
-    }
+    return view('admin.conferences.show', [
+        'conference' => $conference,
+    ]);
+}
 
-    public function edit(int $id): View
-    {
-        $conferences = $this->getSimpleConferenceListForAdmin();
+public function edit(int $id): View
+{
+    $conference = Conference::findOrFail($id);
 
-        if (!isset($conferences[$id])) {
-            abort(404);
-        }
+    return view('admin.conferences.edit', [
+        'conference' => $conference,
+    ]);
+}
 
-        return view('admin.conferences.edit', [
-            'conference' => $conferences[$id],
-        ]);
-    }
+public function update(Request $request, int $id): RedirectResponse
+{
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'speakers' => 'nullable|string',
+        'start_date' => 'required|date',
+        'start_time' => 'required',
+        'address' => 'required|string|max:255',
+    ]);
 
-    public function update(Request $request, int $id): RedirectResponse
-    {
-        $this->validateConference($request);
+    $conference = Conference::findOrFail($id);
+    $conference->update($validatedData);
 
-        return redirect()->route('admin.conferences.index');
-    }
+    return redirect()->route('admin.conferences.index');
+}
 
     public function destroy(int $id): RedirectResponse
-    {
-        return redirect()->route('admin.conferences.index');
-    }
+{
+    $conference = Conference::findOrFail($id);
+    $conference->delete();
+
+    return redirect()->route('admin.conferences.index');
+}
 }

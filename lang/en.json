@@ -64,7 +64,16 @@
     "Upcoming": "Upcoming",
 
     "Password": "Password",
-    "Remember Me": "Remember Me"
+    "Remember Me": "Remember Me",
+    "Login": "Login",
+    "Confirm Password": "Confirm Password",
+
+    "Address": "Address",
+    "Time": "Time",
+    "Finished": "Finished",
+    "Ongoing": "Ongoing",
+    "Planned": "Planned"
+
 
 
 

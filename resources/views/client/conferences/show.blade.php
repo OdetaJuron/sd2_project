@@ -5,12 +5,16 @@
 
 @section('content')
 
-    <h2>{{ $conference['title'] }}</h2>
+    <h2>{{ $conference->title }}</h2>
 
-    <p><strong>{{ __('Date') }}:</strong> {{ $conference['date'] }}</p>
-    <p><strong>{{ __('Location') }}:</strong> {{ $conference['location'] }}</p>
+    <p>
+        <strong>{{ __('Date') }}:</strong>  {{ $conference->start_date }}      
+    </p>
+    <p><strong>{{ __('Time') }}:</strong> {{ $conference->start_time }}</p>
 
-    <p>{{ $conference['description'] }}</p>
+    <p><strong>{{ __('Location') }}:</strong> {{ $conference->address }}</p>
+
+    <p>{{ $conference->description }}</p>
 
     <a href="{{ route('client.conferences') }}" class="btn btn-secondary mt-3">
         {{ __('Back') }}

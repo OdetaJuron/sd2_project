@@ -17,20 +17,34 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($conferences as $conference)
-                    <tr>
-                        <td>{{ $conference['title'] }}</td>
-                        <td>{{ $conference['date'] }}</td>
-                        <td>{{ $conference['status'] }}</td>
-                        <td>{{ $conference['location'] }}</td>
-                        <td>
-                            <a href="{{ route('employee.conferences.show', $conference['id']) }}"
-                               class="btn btn-sm btn-secondary">
-                                {{ __('View') }}
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
+@foreach ($conferences as $conference)
+    @php
+        $statusText = 'Planned';
+
+        if ($conference->start_date < date('Y-m-d')) {
+            $statusText = 'Finished';
+        }
+    @endphp
+
+    <tr>
+        <td>{{ $conference->title }}</td>
+        <td>
+            {{ $conference->start_date }}
+            @if($conference->start_time)
+                {{ $conference->start_time }}
+            @endif
+        </td>
+        <td>{{ __($statusText) }}</td>
+        <td>{{ $conference->address }}</td>
+        <td>
+            <a href="{{ route('employee.conferences.show', $conference->id) }}"
+               class="btn btn-sm btn-secondary">
+                {{ __('View') }}
+            </a>
+        </td>
+    </tr>
+@endforeach
+
             </tbody>
         </table>
 

@@ -13,37 +13,35 @@
 
     <div class="card mb-4">
         <div class="card-body">
-            <h5 class="card-title">{{ $conference['title'] }}</h5>
+            <h5 class="card-title">{{ $conference->title }}</h5>
 
             <p class="card-text">
-                <strong>{{ __('Date') }}:</strong> {{ $conference['date'] }}<br>
-                <strong>{{ __('Location') }}:</strong> {{ $conference['location'] }}<br>
-                <strong>{{ __('Status') }}:</strong> {{ $conference['status'] }}
-
-                <p>{{ $conference['description'] }}</p>
+                <strong>{{ __('Date') }}:</strong> {{ $conference->start_date }}<br>
+                <strong>{{ __('Time') }}:</strong> {{ $conference->start_time }}<br>
+                <strong>{{ __('Address') }}:</strong> {{ $conference->address }}
             </p>
+
+            <p>{{ $conference->description }}</p>
         </div>
     </div>
 
     <h3>{{ __('Registered clients') }}</h3>
 
-    @if (empty($registrations))
+    @if ($registeredUserList->count() === 0)
         <p>{{ __('No registered customers.') }}</p>
     @else
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>{{ __('Name') }}</th>
-                    <th>{{ __('Surname') }}</th>
                     <th>{{ __('E-mail') }}</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($registrations as $registration)
+                @foreach ($registeredUserList as $registeredUser)
                     <tr>
-                        <td>{{ $registration['name'] }}</td>
-                        <td>{{ $registration['surname'] }}</td>
-                        <td>{{ $registration['email'] }}</td>
+                        <td>{{ $registeredUser->name }}</td>
+                        <td>{{ $registeredUser->email }}</td>
                     </tr>
                 @endforeach
             </tbody>

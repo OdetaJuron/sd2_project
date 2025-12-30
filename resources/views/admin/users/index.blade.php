@@ -9,7 +9,7 @@
         <tr>
             <th>#</th>
             <th>{{ __('Name') }}</th>
-            <th>{{ __('Surname') }}</th>
+            {{-- <th>{{ __('Surname') }}</th> --}}
             <th>{{ __('E-mail') }}</th>
             <th>{{ __('Actions') }}</th>
         </tr>
@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ $user['id'] }}</td>
                 <td>{{ $user['name'] }}</td>
-                <td>{{ $user['surname'] }}</td>
+                {{-- <td>{{ $user['surname'] }}</td> --}}
                 <td>{{ $user['email'] }}</td>
                 <td>
                     <a href="{{ route('admin.users.edit', $user['id']) }}" class="btn btn-sm btn-primary">

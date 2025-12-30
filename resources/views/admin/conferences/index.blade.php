@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title', __('Conference list'))
+
 
 @section('content')
     <h1 class="mb-4">{{ __('Conference list') }}</h1>
@@ -24,12 +24,12 @@
         <tbody>
         @foreach ($conferences as $conference)
             @php
-                $isPast = $conference['date'] < date('Y-m-d');
+                $isPast = $conference->start_date < date('Y-m-d');
             @endphp
             <tr>
-                <td>{{ $conference['title'] }}</td>
-                <td>{{ $conference['date'] }}</td>
-                <td>{{ $conference['location'] }}</td>
+                <td>{{ $conference->title }}</td>
+                <td>{{ $conference->start_date }}</td>
+                <td>{{ $conference->address  }}</td>
                 <td>
                     @if ($isPast)
                         {{ __('Past') }}

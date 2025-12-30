@@ -18,7 +18,7 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label class="form-label">{{ __('Surname') }}</label>
             <input type="text"
                    name="surname"
@@ -27,7 +27,7 @@
             @error('surname')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
-        </div>
+        </div> --}}
 
         <div class="mb-3">
             <label class="form-label">{{ __('E-mail') }}</label>

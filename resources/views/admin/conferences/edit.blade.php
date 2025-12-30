@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title', __('Edit conference'))
+
 
 @section('content')
     <h1 class="mb-4">{{ __('Edit conference') }}</h1>

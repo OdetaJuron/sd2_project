@@ -65,8 +65,14 @@
     "Upcoming": "Artėjanti",
 
     "password": "Slaptažodis",
-    "Remember Me": "Prisiminti mane"
+    "Remember Me": "Prisiminti mane",
+    "Login": "Prisijungti",
+    "Confirm Password": "Patvirtinti slaptažodį",
 
-
+    "Address": "Adresas",
+    "Time": "Laikas",
+    "Finished": "Baigta",
+    "Ongoing": "Vyksta",
+    "Planned": "Planuojama"
 
 }

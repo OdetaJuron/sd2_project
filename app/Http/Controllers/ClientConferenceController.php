@@ -3,109 +3,55 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Conference;
+use Illuminate\Support\Carbon;
+
+
+
 
 class ClientConferenceController extends Controller
 {
 
-    private function getClientConferencesArrayForProject()
-    {
+    public function __construct()
+{
+    $this->middleware('auth');
+}
+ 
 
-        $conferencesArrayForClientSideProject = [];
+public function index()
+{
+    $conferences = Conference::orderBy('start_date', 'asc')->get();
 
-        $conferencesArrayForClientSideProject[] = [
-            'id' => 1,
-            'title' => 'First simple conference about web development',
-            'date' => '2025-01-15',
-            'location' => 'Vilnius, Main hall',
-            'description' => 'This is very simple description for first conference, I hope this is correct.',
-        ];
-
-        $conferencesArrayForClientSideProject[] = [
-            'id' => 2,
-            'title' => 'Second conference for beginners about Laravel framework',
-            'date' => '2025-02-10',
-            'location' => 'Kaunas, Room 204',
-            'description' => 'Here we talk about Laravel basics and how not to be scared of this framework.',
-        ];
-
-        $conferencesArrayForClientSideProject[] = [
-            'id' => 3,
-            'title' => 'Third conference about frontend HTML and CSS things',
-            'date' => '2025-03-05',
-            'location' => 'Online, Zoom link',
-            'description' => 'Just very simple frontend conference, nothing too crazy, more for beginners.',
-        ];
-
-        return $conferencesArrayForClientSideProject;
-    }
+    return view('client.conferences', [
+        'conferences' => $conferences,
+    ]);
+}
 
 
-    private function findOneConferenceByIdFromClientArray($allConferencesArray, $conferenceId)
-    {
-        foreach ($allConferencesArray as $oneConferenceItemFromList) {
-            if ((int) $oneConferenceItemFromList['id'] === (int) $conferenceId) {
-                return $oneConferenceItemFromList;
-            }
-        }
+public function show($id)
+{
+    $conference = Conference::findOrFail($id);
+
+    return view('client.conferences.show', [
+        'conference' => $conference,
+    ]);
+}
 
 
-        return null;
-    }
 
+public function register($id)
+{
+    $conference = Conference::findOrFail($id);
+    $user = auth()->user();
 
-    public function index()
-    {
+    $user->conferences()->syncWithoutDetaching([
+        $conference->id => ['registered_at' => Carbon::now()],
+    ]);
 
-        $allConferencesArrayForClientListPage = $this->getClientConferencesArrayForProject();
+    return redirect()
+    ->route('client.conferences.registrations')
+    ->with('successMessage', 'Registracija į konferenciją sėkminga.');
 
-        return view('client.conferences', [
-            'conferences' => $allConferencesArrayForClientListPage,
-        ]);
-    }
+}
 
-    public function show($id)
-    {
-        $allConferencesArrayForClientListPage = $this->getClientConferencesArrayForProject();
-
-        $oneConferenceForShowPage = $this->findOneConferenceByIdFromClientArray(
-            $allConferencesArrayForClientListPage,
-            $id
-        );
-
-        if ($oneConferenceForShowPage === null) {
-            abort(404);
-        }
-
-        return view('client.conferences.show', [
-            'conference' => $oneConferenceForShowPage,
-        ]);
-    }
-
-    public function register(Request $request, $id)
-    {
-        $allConferencesArrayForClientListPage = $this->getClientConferencesArrayForProject();
-
-        $oneConferenceForRegistrationPage = $this->findOneConferenceByIdFromClientArray(
-            $allConferencesArrayForClientListPage,
-            $id
-        );
-
-        if ($oneConferenceForRegistrationPage === null) {
-            abort(404);
-        }
-
-
-        $validatedDataForClientRegistrationForm = $request->validate([
-            'participant_name' => 'required|string|max:255',
-            'participant_email' => 'required|email',
-        ]);
-
-
-        return redirect()
-            ->route('client.conferences')
-            ->with(
-                'client_registration_success_message',
-                'Registracija sėkmingai pateikta, tikiuosi, kad forma veikė teisingai.'
-            );
-    }
 }

@@ -5,18 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 
 class Conference extends Model
 {
+   
+    use HasFactory;
+
     protected $fillable = [
-    'title',
-    'description',
-    'speakers',
-    'start_date',
-    'start_time',
-    'address',
-];
+        'title',
+        'description',
+        'speakers',
+        'start_date',
+        'start_time',
+        'address',
+    ];
 
 public function users(): BelongsToMany
 {

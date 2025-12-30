@@ -10,6 +10,6 @@
     <h4>{{ __('Student information:') }}</h4>
 
     <p>{{ __('Name : Odeta') }}</p>
-    <p>{{ __('Surname: Juroniene') }}</p>
+    <p>{{ __('Surname : Juroniene') }}</p>
     <p>{{ __('Group: PIT-22-I-NT') }}</p>
 @endsection
