@@ -16,23 +16,33 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         {{-- links to user types --}}
-            <ul class="navbar-nav ms-3 me-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
-                </li>
+        <ul class="navbar-nav ms-3 me-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('client.conferences') }}">{{ __('Client') }}</a>
-                </li>
+            @auth
+                @if (auth()->user()->hasRoleName('client'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('client.conferences') }}">{{ __('Client') }}</a>
+                    </li>
+                @endif
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('employee.conferences') }}">{{ __('Employee') }}</a>
-                </li>
+                @if (auth()->user()->hasRoleName('employee'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('employee.conferences') }}">{{ __('Employee') }}</a>
+                    </li>
+                @endif
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.dashboard') }}">{{ __('Admin') }}</a>
-                </li>
-            </ul>
+                @if (auth()->user()->hasRoleName('admin'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.dashboard') }}">{{ __('Admin') }}</a>
+                    </li>
+                @endif
+            @endauth
+        </ul>
+
+
 
             <div class="d-flex align-items-center">
 

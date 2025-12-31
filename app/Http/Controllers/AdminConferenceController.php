@@ -12,16 +12,6 @@ use App\Models\Conference;
 class AdminConferenceController extends Controller
 {
 
-    private function validateConference(Request $request): void
-    {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'date' => 'required',
-            'location' => 'required',
-        ]);
-    }
-
     public function index()
 {
     $conferences = Conference::orderBy('start_date', 'asc')->get();

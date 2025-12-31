@@ -38,7 +38,34 @@ class User extends Authenticatable
                 return $this->belongsToMany(Conference::class, 'users_conferences', 'user_id', 'conference_id')
                     ->withPivot('registered_at')
                     ->withTimestamps();
+
+                
             }
+        public function hasRoleName(string $roleName): bool
+        {
+            $roleList = $this->roles()->get();
+
+            foreach ($roleList as $roleItem) {
+                if ($roleItem->name === $roleName) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+            public function hasAnyRole(array $roleNameList): bool
+            {
+                foreach ($roleNameList as $oneRoleName) {
+                    if ($this->hasRoleName($oneRoleName)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
 
 
     /**

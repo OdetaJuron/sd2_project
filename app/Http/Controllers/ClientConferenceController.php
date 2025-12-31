@@ -36,6 +36,15 @@ public function show($id)
         'conference' => $conference,
     ]);
 }
+public function registrations()
+{
+    $user = auth()->user();
+    $conferences = $user->conferences()->orderBy('start_date', 'asc')->get();
+
+return view('client.registrations', [
+    'conferences' => $conferences,
+    ]);
+}
 
 
 
@@ -49,7 +58,7 @@ public function register($id)
     ]);
 
     return redirect()
-    ->route('client.conferences.registrations')
+    ->route('client.registrations')
     ->with('successMessage', 'Registracija į konferenciją sėkminga.');
 
 }
